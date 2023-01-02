@@ -1,4 +1,5 @@
 import 'package:ekaant/calendar.dart';
+import 'package:ekaant/color.dart';
 import 'package:ekaant/timer_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -23,7 +24,7 @@ class _BottomNavState extends State<BottomNav> {
         automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
-        backgroundColor: const Color(0xff00c29a),
+        backgroundColor: ekaantGreen,
         title: Image.asset(
           'assets/title.png',
           height: 90,
@@ -43,8 +44,8 @@ class _BottomNavState extends State<BottomNav> {
             topRight: Radius.circular(60),
           ),
           child: BottomNavigationBar(
-              unselectedItemColor: const Color(0xff0c0d1b).withOpacity(0.7),
-              backgroundColor: const Color(0xff00c29a),
+              unselectedItemColor: ekaantBlue.withOpacity(0.7),
+              backgroundColor: ekaantGreen,
               selectedItemColor: Colors.white,
               showUnselectedLabels: false,
               selectedFontSize: 16,

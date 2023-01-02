@@ -1,4 +1,5 @@
 import 'package:cron/cron.dart';
+import 'package:ekaant/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -105,11 +106,11 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff00c29a),
+      backgroundColor: ekaantGreen,
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          color: Color(0xff0c0d1b),
+          color: ekaantBlue,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(60),
             topRight: Radius.circular(60),
@@ -135,7 +136,7 @@ class _CalendarState extends State<Calendar> {
                               margin: const EdgeInsets.all(6),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: const Color(0xff00c29a),
+                                color: ekaantGreen,
                               ),
                               child: const Center(
                                 child: Icon(Icons.check, color: Colors.white),
@@ -157,7 +158,7 @@ class _CalendarState extends State<Calendar> {
                               margin: const EdgeInsets.all(6),
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xff00c29a),
+                                color: ekaantGreen,
                               ),
                               child: Center(
                                 child: Text(DateTime.now().day.toString(),
@@ -360,12 +361,12 @@ class _CalendarState extends State<Calendar> {
                         percent: percent,
                         circularStrokeCap: CircularStrokeCap.round,
                         reverse: true,
-                        progressColor: const Color(0xff00c29a),
-                        backgroundColor: const Color(0xff0c0d1b),
+                        progressColor: ekaantGreen,
+                        backgroundColor: ekaantBlue,
                         center: Text(
                           "${(durationDone.inSeconds / duration.inSeconds * 100).floor()}%",
                           style: const TextStyle(
-                              color: Color(0xff00c29a), fontSize: 20),
+                              color: ekaantGreen, fontSize: 20),
                         ),
                       ),
                     ),
@@ -389,7 +390,7 @@ class _CalendarState extends State<Calendar> {
                     streak.toString(),
                     style: const TextStyle(
                       fontSize: 40,
-                      color: Color(0xff00c29a),
+                      color: ekaantGreen,
                     ),
                   ),
                   const Text(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:ekaant/bottom_nav.dart';
+import 'package:ekaant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -81,6 +82,7 @@ class _TimerDisplayState extends State<TimerDisplay> {
           });
         } else {
           timer?.cancel();
+          audioPlayer.dispose();
           playEndAudio();
         }
       },
@@ -107,7 +109,7 @@ class _TimerDisplayState extends State<TimerDisplay> {
     if (duration == const Duration(seconds: 0)) {
       return const Icon(
         Icons.check,
-        color: Color(0xff00c29a),
+        color: ekaantGreen,
         size: 110,
       );
     } else {
@@ -185,7 +187,7 @@ class _TimerDisplayState extends State<TimerDisplay> {
         ),
         child: const Text(
           "Finish",
-          style: TextStyle(color: Color(0xff00c29a), fontSize: 20),
+          style: TextStyle(color: ekaantGreen, fontSize: 20),
         ),
       );
     } else {
@@ -247,12 +249,12 @@ class _TimerDisplayState extends State<TimerDisplay> {
         return true;
       },
       child: Scaffold(
-          backgroundColor: const Color(0xff00c29a),
+          backgroundColor: ekaantGreen,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0,
             centerTitle: true,
-            backgroundColor: const Color(0xff00c29a),
+            backgroundColor: ekaantGreen,
             title: Image.asset(
               'assets/title.png',
               height: 90,
@@ -262,7 +264,7 @@ class _TimerDisplayState extends State<TimerDisplay> {
           body: Container(
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Color(0xff0c0d1b),
+              color: ekaantBlue,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(60),
                 topRight: Radius.circular(60),
@@ -283,7 +285,7 @@ class _TimerDisplayState extends State<TimerDisplay> {
                         value: duration.inSeconds / initialTime.inSeconds,
                         strokeWidth: 12,
                         color: Colors.white,
-                        backgroundColor: const Color(0xff00c29a),
+                        backgroundColor: ekaantGreen,
                       ),
                       buildTime(),
                     ],

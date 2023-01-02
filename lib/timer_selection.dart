@@ -1,3 +1,4 @@
+import 'package:ekaant/color.dart';
 import 'package:ekaant/timer_display.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,13 @@ class _TimerSelectionState extends State<TimerSelection> {
     'buddhist scroll',
     'om chant', // yogis om
     'wind chimes',
-    'none'
+    'lone silence'
   ];
   List<String> startendSounds = [
     'shankh',
     'tibetian bowl',
     'buddhist bowl',
-    'none'
+    'lone silence'
   ];
   Duration duration = const Duration(minutes: 5);
   int surroundSound = 0, endSound = 0, startSound = 0;
@@ -61,10 +62,10 @@ class _TimerSelectionState extends State<TimerSelection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff00c29a),
+      backgroundColor: ekaantGreen,
       body: Container(
         decoration: const BoxDecoration(
-          color: Color(0xff0c0d1b),
+          color: ekaantBlue,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(60),
             topRight: Radius.circular(60),
@@ -73,16 +74,16 @@ class _TimerSelectionState extends State<TimerSelection> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-                child: Image.asset(
-                  'assets/logo.png',
-                  height: 200,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
+              // Center(
+              //   child: Image.asset(
+              //     'assets/logo.png',
+              //     height: 200,
+              //     fit: BoxFit.fitHeight,
+              //   ),
+              // ),
               const SizedBox(height: 20),
               const Divider(thickness: 1, color: Colors.white70),
               Row(
@@ -96,7 +97,7 @@ class _TimerSelectionState extends State<TimerSelection> {
                       padding: const EdgeInsets.all(0),
                       child: Text(
                         formatDuration(duration),
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       onPressed: () {
                         showCupertinoModalPopup(
