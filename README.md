@@ -1,16 +1,34 @@
-# ekaant
+# Ekaant - make meditaion a habit
 
-A new Flutter project.
+Date Modified - 03/01/2023
 
-## Getting Started
+---
+### Vision
+---
+*There are several applications that offer meditation mentors and videos to help you through the meditaion learning curve. However, ekaant is unique in every way. We at ekaant want to help you make meditation a habit.* 
 
-This project is a starting point for a Flutter application.
+*We believe that meditaion is journey that must we navigated by the person himself/ herself, the enjoyment you get achieving new stages of meditaion is the absolute. We want everyone to have this absolute experience.* 
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
+### Current Application State
+---
+ Currently, Ekaant offers individuals a platform to monitor their regular meditation progress. With the option to play soothing music in the background, it aids in developing a comfortable frame of mind for meditation.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+### Features
+
+- Meditaion Status Calendar
+- Streak Counter
+- Background Music Player and Selector 
+- Start / End Music Player and Selector
+- Day Goal Progress Indicator
+
+### Working on ....
+
+- Notification on day goal achievement status
+- More background sounds
+
+
+
+
