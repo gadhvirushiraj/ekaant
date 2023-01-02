@@ -1,5 +1,5 @@
 import 'package:ekaant/calendar.dart';
-import 'package:ekaant/color.dart';
+import 'package:ekaant/constants/color.dart';
 import 'package:ekaant/timer_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:ekaant/bottom_nav.dart';
-import 'package:ekaant/color.dart';
+import 'package:ekaant/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
