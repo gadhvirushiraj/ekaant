@@ -26,8 +26,8 @@ class _TimerDisplayState extends State<TimerDisplay> {
   AudioPlayer audioPlayer = AudioPlayer();
   AudioPlayer startPlayer = AudioPlayer();
   AudioPlayer endPlayer = AudioPlayer();
-  Duration duration = const Duration(seconds: 10);
-  Duration initialTime = const Duration(seconds: 10);
+  late Duration duration;
+  late Duration initialTime;
   Timer? timer;
   bool isRunning = true;
 

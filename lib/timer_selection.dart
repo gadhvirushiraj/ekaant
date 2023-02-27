@@ -77,13 +77,6 @@ class _TimerSelectionState extends State<TimerSelection> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Center(
-              //   child: Image.asset(
-              //     'assets/logo.png',
-              //     height: 200,
-              //     fit: BoxFit.fitHeight,
-              //   ),
-              // ),
               const SizedBox(height: 20),
               const Divider(thickness: 1, color: Colors.white70),
               Row(
@@ -97,7 +90,8 @@ class _TimerSelectionState extends State<TimerSelection> {
                       padding: const EdgeInsets.all(0),
                       child: Text(
                         formatDuration(duration),
-                        style: const TextStyle(color: Colors.white, fontSize: 18),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       onPressed: () {
                         showCupertinoModalPopup(
@@ -244,12 +238,13 @@ class _TimerSelectionState extends State<TimerSelection> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TimerDisplay(
-                              duration_required: duration,
-                              surroundSound: surroundSounds[surroundSound],
-                              startSound: startendSounds[startSound],
-                              endSound: startendSounds[endSound],
-                            )),
+                      builder: (context) => TimerDisplay(
+                        duration_required: duration,
+                        surroundSound: surroundSounds[surroundSound],
+                        startSound: startendSounds[startSound],
+                        endSound: startendSounds[endSound],
+                      ),
+                    ),
                   );
                 },
                 child: const Icon(

@@ -1,20 +1,22 @@
+import 'package:ekaant/breathing_excercise/breath_selection.dart';
 import 'package:ekaant/calendar.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:ekaant/timer_selection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({Key? key}) : super(key: key);
+
+  const BottomNav(
+      {Key? key})
+      : super(key: key);
 
   @override
   State<BottomNav> createState() => _BottomNavState();
 }
 
 class _BottomNavState extends State<BottomNav> {
-  int currentIndex = 0;
-  final screens = [Calendar(), TimerSelection()];
+  int currentIndex = 1;
+  final screens = [Breath(), Calendar(), TimerSelection()];
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,10 @@ class _BottomNavState extends State<BottomNav> {
               },
               items: const [
                 BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage("assets/tibet.png")),
+                  label: 'Breath',
+                ),
+                BottomNavigationBarItem(
                   icon: Icon(
                     Icons.home,
                   ),
@@ -67,7 +73,7 @@ class _BottomNavState extends State<BottomNav> {
                     Icons.timelapse,
                   ),
                   label: 'Timer',
-                )
+                ),
               ]),
         ),
       ),
