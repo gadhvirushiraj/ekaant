@@ -240,6 +240,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  material_design_icons_flutter:
+    dependency: "direct dev"
+    description:
+      name: material_design_icons_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.7096"
   meta:
     dependency: transitive
     description:

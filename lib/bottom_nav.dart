@@ -1,14 +1,12 @@
 import 'package:ekaant/breathing_excercise/breath_selection.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:ekaant/calendar.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:ekaant/timer_selection.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
-
-  const BottomNav(
-      {Key? key})
-      : super(key: key);
+  const BottomNav({Key? key}) : super(key: key);
 
   @override
   State<BottomNav> createState() => _BottomNavState();
@@ -59,12 +57,12 @@ class _BottomNavState extends State<BottomNav> {
               },
               items: const [
                 BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage("assets/tibet.png")),
+                  icon: Icon(MdiIcons.meditation),
                   label: 'Breath',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.home,
+                    MdiIcons.homeVariantOutline,
                   ),
                   label: 'Home',
                 ),

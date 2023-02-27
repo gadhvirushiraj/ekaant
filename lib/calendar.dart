@@ -142,7 +142,8 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 90),
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: 90),
           child: Padding(
             padding:
                 const EdgeInsets.only(right: 20, left: 20, top: 5, bottom: 20),
@@ -414,103 +415,108 @@ class _CalendarState extends State<Calendar> {
       }
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: IntrinsicHeight(
-        child: Row(
-          children: [
-            Column(
-              children: [
-                const Text(
-                  "Today's Effort",
-                  style: TextStyle(fontSize: 18, color: Colors.black54),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          CircularPercentIndicator(
-                            radius: 45,
-                            lineWidth: 8,
-                            percent: percent_breath,
-                            circularStrokeCap: CircularStrokeCap.round,
-                            reverse: true,
-                            progressColor: ekaantDarkGreen,
-                            backgroundColor: ekaantBlue,
-                          ),
-                          CircularPercentIndicator(
-                            radius: 55,
-                            lineWidth: 8,
-                            percent: percent_medi,
-                            circularStrokeCap: CircularStrokeCap.round,
-                            reverse: true,
-                            progressColor: ekaantGreen,
-                            backgroundColor: ekaantBlue,
-                            center: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${((durationDoneMedi.inSeconds / duration_Medi.inSeconds) * 100).floor()}%",
-                                  style: const TextStyle(
-                                      color: ekaantGreen, fontSize: 18),
-                                ),
-                                Text(
-                                  "${((durationDoneBreath.inSeconds / duration_Breath.inSeconds) * 100).floor()}%",
-                                  style: const TextStyle(
-                                      color: ekaantDarkGreen, fontSize: 18),
-                                ),
-                              ],
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Container(
+        padding:
+            const EdgeInsets.only(top: 15, right: 20, left: 20, bottom: 20),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(1),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              Column(
+                children: [
+                  const Text(
+                    "Today's Effort",
+                    style: TextStyle(fontSize: 18, color: Colors.black54),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: (MediaQuery.of(context).size.width - 90) / 2,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            CircularPercentIndicator(
+                              radius: 45,
+                              lineWidth: 9,
+                              percent: percent_breath,
+                              circularStrokeCap: CircularStrokeCap.round,
+                              reverse: true,
+                              progressColor: ekaantDarkGreen,
+                              backgroundColor: ekaantBlue,
                             ),
-                          ),
-                        ],
+                            CircularPercentIndicator(
+                              radius: 55,
+                              lineWidth: 9,
+                              percent: percent_medi,
+                              circularStrokeCap: CircularStrokeCap.round,
+                              reverse: true,
+                              progressColor: ekaantGreen,
+                              backgroundColor: ekaantBlue,
+                              center: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${((durationDoneMedi.inSeconds / duration_Medi.inSeconds) * 100).floor()}%",
+                                    style: const TextStyle(
+                                        color: ekaantGreen, fontSize: 18),
+                                  ),
+                                  Text(
+                                    "${((durationDoneBreath.inSeconds / duration_Breath.inSeconds) * 100).floor()}%",
+                                    style: const TextStyle(
+                                        color: ekaantDarkGreen, fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const VerticalDivider(
+                color: Colors.black54,
+                thickness: 2,
+                indent: 5,
+                endIndent: 5,
+                width: 30,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      streak.toString(),
+                      style: const TextStyle(
+                        fontSize: 40,
+                        color: ekaantGreen,
+                      ),
+                    ),
+                    const Text(
+                      "DAYS STREAK",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
-            const VerticalDivider(
-              color: Colors.black54,
-              thickness: 2,
-              indent: 5,
-              endIndent: 5,
-              width: 30,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    streak.toString(),
-                    style: const TextStyle(
-                      fontSize: 40,
-                      color: ekaantGreen,
-                    ),
-                  ),
-                  const Text(
-                    "DAYS STREAK",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
