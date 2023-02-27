@@ -15,13 +15,21 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  Duration duration = const Duration(minutes: 5); // by default
-  Duration durationDone = const Duration(seconds: 0);
-  // String lastCompleteDay = "";
-  String previousCompletedDate = "";
   int streak = 0;
-  List<String> goalTime = ['0', '5', '0']; // by deafualt
-  List<String> achievedTime = ['0', '0', '0'];
+  String previousCompletedDate = "";
+
+  Duration duration_Medi = const Duration(minutes: 5); // by default
+  Duration durationDoneMedi = const Duration(seconds: 0);
+
+  Duration duration_Breath = const Duration(minutes: 5); // by default
+  Duration durationDoneBreath = const Duration(seconds: 0);
+
+  List<String> goalMeditation = ['0', '5', '0']; // by deafualt
+  List<String> achievedMedi = ['0', '0', '0'];
+
+  List<String> goalBreath = ['0', '5', '0']; // by deafualt
+  List<String> achievedBreath = ['0', '0', '0'];
+
   late String lastActivityDate; // by deafualt
   List<String> toHighlight = [];
 
@@ -36,7 +44,8 @@ class _CalendarState extends State<Calendar> {
     lastActivityDate =
         await prefs.getString('lastActivityDate') ?? '2021-11-11';
     if (lastActivityDate != DateFormat("yyyy-MM-dd").format(DateTime.now())) {
-      await prefs.setStringList('achievedTime', ['0', '0', '0']);
+      await prefs.setStringList('achievedMedi', ['0', '0', '0']);
+      await prefs.setStringList('achievedBreath', ['0', '0', '0']);
       await prefs.setString(
           'lastActivityDate', DateFormat("yyyy-MM-dd").format(DateTime.now()));
     }
@@ -49,25 +58,40 @@ class _CalendarState extends State<Calendar> {
 
     streak = (await prefs.getInt('streak')) ?? 0;
 
-    // lastCompleteDay = await prefs.getString('lastCompleteDay') ?? "";
-
-    goalTime = (await prefs.getStringList('goalTime')) ?? ['0', '5', '0'];
+    goalMeditation =
+        (await prefs.getStringList('goalMeditation')) ?? ['0', '5', '0'];
+    goalBreath = (await prefs.getStringList('goalBreath')) ?? ['0', '5', '0'];
 
     await setNew();
 
-    achievedTime =
-        (await prefs.getStringList('achievedTime')) ?? ['0', '0', '0'];
+    achievedMedi =
+        (await prefs.getStringList('achievedMedi')) ?? ['0', '0', '0'];
 
-    duration = Duration(
-      hours: int.parse(goalTime[0]),
-      minutes: int.parse(goalTime[1]),
-      seconds: int.parse(goalTime[2]),
+    achievedBreath =
+        (await prefs.getStringList('achievedBreath')) ?? ['0', '0', '0'];
+
+    duration_Medi = Duration(
+      hours: int.parse(goalMeditation[0]),
+      minutes: int.parse(goalMeditation[1]),
+      seconds: int.parse(goalMeditation[2]),
     );
 
-    durationDone = Duration(
-      hours: int.parse(achievedTime[0]),
-      minutes: int.parse(achievedTime[1]),
-      seconds: int.parse(achievedTime[2]),
+    durationDoneMedi = Duration(
+      hours: int.parse(achievedMedi[0]),
+      minutes: int.parse(achievedMedi[1]),
+      seconds: int.parse(achievedMedi[2]),
+    );
+
+    duration_Breath = Duration(
+      hours: int.parse(goalBreath[0]),
+      minutes: int.parse(goalBreath[1]),
+      seconds: int.parse(goalBreath[2]),
+    );
+
+    durationDoneBreath = Duration(
+      hours: int.parse(achievedBreath[0]),
+      minutes: int.parse(achievedBreath[1]),
+      seconds: int.parse(achievedBreath[2]),
     );
 
     previousCompletedDate = await prefs.getString('lastCompleteDay') ?? "";
@@ -89,7 +113,8 @@ class _CalendarState extends State<Calendar> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final cron = Cron();
     cron.schedule(Schedule.parse('00 00 * * *'), () async {
-      await prefs.setStringList('achievedTime', ['0', '0', '0']);
+      await prefs.setStringList('achievedMedi', ['0', '0', '0']);
+      await prefs.setStringList('achievedBreath', ['0', '0', '0']);
       getData();
     });
   }
@@ -238,7 +263,7 @@ class _CalendarState extends State<Calendar> {
                         Row(
                           children: [
                             const Text(
-                              "Meditation Time (per day)",
+                              "Daily Meditation",
                               style: TextStyle(
                                   fontSize: 16, color: Colors.black54),
                             ),
@@ -246,7 +271,7 @@ class _CalendarState extends State<Calendar> {
                             CupertinoButton(
                               padding: const EdgeInsets.all(0),
                               child: Text(
-                                formatDuration(duration),
+                                formatDuration(duration_Medi),
                                 style: const TextStyle(
                                     fontSize: 16, color: Colors.black),
                               ),
@@ -254,7 +279,48 @@ class _CalendarState extends State<Calendar> {
                                 showCupertinoModalPopup(
                                     context: context,
                                     builder: (context) => CupertinoActionSheet(
-                                          actions: [buildPicker()],
+                                          actions: [
+                                            buildPicker(duration_Medi, 0)
+                                          ],
+                                          cancelButton:
+                                              CupertinoActionSheetAction(
+                                            child: const Text(
+                                              "Done",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black54),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ));
+                              },
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "Breathing Excercise",
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.black54),
+                            ),
+                            Expanded(child: Container()),
+                            CupertinoButton(
+                              padding: const EdgeInsets.all(0),
+                              child: Text(
+                                formatDuration(duration_Breath),
+                                style: const TextStyle(
+                                    fontSize: 16, color: Colors.black),
+                              ),
+                              onPressed: () {
+                                showCupertinoModalPopup(
+                                    context: context,
+                                    builder: (context) => CupertinoActionSheet(
+                                          actions: [
+                                            buildPicker(duration_Breath, 1)
+                                          ],
                                           cancelButton:
                                               CupertinoActionSheetAction(
                                             child: const Text(
@@ -287,26 +353,37 @@ class _CalendarState extends State<Calendar> {
     );
   }
 
-  Widget buildPicker() {
+  Widget buildPicker(Duration initTime, int i) {
     return Container(
       color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.4,
       child: Center(
         child: CupertinoTimerPicker(
-          initialTimerDuration: duration,
+          initialTimerDuration: initTime,
           mode: CupertinoTimerPickerMode.hms,
           onTimerDurationChanged: ((value) async {
             if (value != const Duration(seconds: 0)) {
               setState(() {
-                duration = value;
+                if (i == 0) duration_Medi = value;
+                if (i == 1) duration_Breath = value;
               });
 
               SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setStringList('goalTime', [
-                formatDuration(duration).substring(0, 2),
-                formatDuration(duration).substring(3, 5),
-                formatDuration(duration).substring(6, 8)
-              ]);
+              if (i == 0) {
+                await prefs.setStringList('goalMeditation', [
+                  formatDuration(duration_Medi).substring(0, 2),
+                  formatDuration(duration_Medi).substring(3, 5),
+                  formatDuration(duration_Medi).substring(6, 8)
+                ]);
+              }
+
+              if (i == 1) {
+                await prefs.setStringList('goalBreath', [
+                  formatDuration(duration_Breath).substring(0, 2),
+                  formatDuration(duration_Breath).substring(3, 5),
+                  formatDuration(duration_Breath).substring(6, 8)
+                ]);
+              }
             }
           }),
         ),
@@ -315,21 +392,28 @@ class _CalendarState extends State<Calendar> {
   }
 
   Widget analysisToday() {
-    double percent = 0;
-    if ((durationDone.inSeconds / duration.inSeconds) >= 1) {
-      if (previousCompletedDate == "" ||
-          DateFormat("yyyy-MM-dd").format(DateTime.now()) !=
-              previousCompletedDate) {
-        markToday();
+    double percent_medi = durationDoneMedi.inSeconds / duration_Medi.inSeconds;
+    double percent_breath =
+        durationDoneBreath.inSeconds / duration_Breath.inSeconds;
+
+    if (percent_medi >= 1 || percent_breath >= 1) {
+      if (percent_breath >= 1) percent_breath = 1;
+      if (percent_medi >= 1) percent_medi = 1;
+
+      if (percent_medi >= 1 && percent_breath >= 1) {
+        if (previousCompletedDate == "" ||
+            DateFormat("yyyy-MM-dd").format(DateTime.now()) !=
+                previousCompletedDate) {
+          markToday();
+        }
       }
-      percent = 1;
     } else {
       if (DateFormat("yyyy-MM-dd").format(DateTime.now()) ==
           previousCompletedDate) {
         removeToday();
       }
-      percent = durationDone.inSeconds / duration.inSeconds;
     }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
@@ -353,21 +437,44 @@ class _CalendarState extends State<Calendar> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 94,
-                      width: 94,
-                      child: CircularPercentIndicator(
-                        radius: 47,
-                        lineWidth: 12,
-                        percent: percent,
-                        circularStrokeCap: CircularStrokeCap.round,
-                        reverse: true,
-                        progressColor: ekaantGreen,
-                        backgroundColor: ekaantBlue,
-                        center: Text(
-                          "${(durationDone.inSeconds / duration.inSeconds * 100).floor()}%",
-                          style: const TextStyle(
-                              color: ekaantGreen, fontSize: 20),
-                        ),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          CircularPercentIndicator(
+                            radius: 45,
+                            lineWidth: 8,
+                            percent: percent_breath,
+                            circularStrokeCap: CircularStrokeCap.round,
+                            reverse: true,
+                            progressColor: ekaantDarkGreen,
+                            backgroundColor: ekaantBlue,
+                          ),
+                          CircularPercentIndicator(
+                            radius: 55,
+                            lineWidth: 8,
+                            percent: percent_medi,
+                            circularStrokeCap: CircularStrokeCap.round,
+                            reverse: true,
+                            progressColor: ekaantGreen,
+                            backgroundColor: ekaantBlue,
+                            center: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "${((durationDoneMedi.inSeconds / duration_Medi.inSeconds) * 100).floor()}%",
+                                  style: const TextStyle(
+                                      color: ekaantGreen, fontSize: 18),
+                                ),
+                                Text(
+                                  "${((durationDoneBreath.inSeconds / duration_Breath.inSeconds) * 100).floor()}%",
+                                  style: const TextStyle(
+                                      color: ekaantDarkGreen, fontSize: 18),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -446,7 +553,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   Future<void> removeToday() async {
-    print("here");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> currData = (await prefs.getStringList('toHighlight')) ?? [];
 

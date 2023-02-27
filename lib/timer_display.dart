@@ -57,9 +57,9 @@ class _TimerDisplayState extends State<TimerDisplay> {
   Future<void> updateTimeDone() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> currDone =
-        (await prefs.getStringList('achievedTime')) ?? ['0', '0', '0'];
+        (await prefs.getStringList('achievedMedi')) ?? ['0', '0', '0'];
 
-    await prefs.setStringList('achievedTime', [
+    await prefs.setStringList('achievedMedi', [
       (int.parse(formatDuration(initialTime).substring(0, 2)) +
               int.parse(currDone[0]))
           .toString(),

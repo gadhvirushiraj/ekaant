@@ -326,9 +326,9 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   Future<void> updateTimeDone() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> currDone =
-        (await prefs.getStringList('achievedBreathingTime')) ?? ['0', '0', '0'];
+        (await prefs.getStringList('achievedBreath')) ?? ['0', '0', '0'];
 
-    await prefs.setStringList('achievedBreatthingTime', [
+    await prefs.setStringList('achievedBreath', [
       (int.parse(formatDuration(initialTime).substring(0, 2)) +
               int.parse(currDone[0]))
           .toString(),
