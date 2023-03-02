@@ -37,7 +37,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
     super.initState();
     startTimer();
     duration = widget.session_duration;
-    initialTime = duration;
+    initialTime = widget.session_duration;
 
     controller = AnimationController(
         vsync: this,
@@ -222,7 +222,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
           side: const BorderSide(width: 2.0, color: Colors.white),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
         onPressed: () {
           stopTimer();
@@ -242,7 +242,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
           side: const BorderSide(width: 2.0, color: Colors.white),
-          shape: CircleBorder(),
+          shape: const CircleBorder(),
         ),
         onPressed: () {
           startTimer();
@@ -262,14 +262,14 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
 
   Widget stopButton() {
     if (duration == const Duration(seconds: 0)) {
-      updateTimeDone();
       return OutlinedButton(
         onPressed: (() {
+          updateTimeDone();
           controller.dispose();
           timer?.cancel();
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => BottomNav()),
+            MaterialPageRoute(builder: (context) => const BottomNav()),
           );
         }),
         style: OutlinedButton.styleFrom(
@@ -292,7 +292,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
               side: const BorderSide(width: 2.0, color: Colors.white),
-              shape: CircleBorder(),
+              shape: const CircleBorder(),
             ),
             onPressed: () {
               stopTimer();
@@ -326,18 +326,18 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
   Future<void> updateTimeDone() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> currDone =
-        (await prefs.getStringList('achievedBreath')) ?? ['0', '0', '0'];
+        await (prefs.getStringList('achievedBreath')) ?? ['0', '0', '0'];
 
     await prefs.setStringList('achievedBreath', [
-      (int.parse(formatDuration(initialTime).substring(0, 2)) +
+      ((int.parse(formatDuration(initialTime).substring(0, 2)) +
               int.parse(currDone[0]))
-          .toString(),
-      (int.parse(formatDuration(initialTime).substring(3, 5)) +
+          .toString()),
+      ((int.parse(formatDuration(initialTime).substring(3, 5)) +
               int.parse(currDone[1]))
-          .toString(),
-      (int.parse(formatDuration(initialTime).substring(6, 8)) +
+          .toString()),
+      ((int.parse(formatDuration(initialTime).substring(6, 8)) +
               int.parse(currDone[2]))
-          .toString(),
+          .toString()),
     ]);
   }
 }

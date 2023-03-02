@@ -170,9 +170,9 @@ class _TimerDisplayState extends State<TimerDisplay> {
 
   Widget stopButton() {
     if (duration == const Duration(seconds: 0)) {
-      updateTimeDone();
       return OutlinedButton(
         onPressed: (() {
+          updateTimeDone();
           audioPlayer.dispose();
           Navigator.pushReplacement(
             context,
