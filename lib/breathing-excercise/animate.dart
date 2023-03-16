@@ -133,7 +133,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                            width: 2, color: Colors.white.withOpacity(0.4))),
+                            width: 2, color: Colors.white.withOpacity(0.5))),
                   ),
                   Container(
                     height: 200,
@@ -146,7 +146,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
                         )
                       ],
                       shape: BoxShape.circle,
-                      color: ekaantGreen.withOpacity(0.25),
+                      //color: ekaantGreen.withOpacity(0.25),
                       border: Border.all(
                           width: 2, color: Colors.white.withOpacity(0.5)),
                     ),
@@ -158,8 +158,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin {
                       boxShadow: [
                         BoxShadow(
                           color: ekaantGreen.withOpacity(0.65),
-                          blurRadius: 20,
-                          spreadRadius: 35,
+                          blurRadius: 10,
                         )
                       ],
                       color: colorAnimation.value,

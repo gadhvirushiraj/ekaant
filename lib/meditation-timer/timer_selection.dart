@@ -1,5 +1,5 @@
 import 'package:ekaant/constants/color.dart';
-import 'package:ekaant/timer_display.dart';
+import 'package:ekaant/meditation-timer/timer_display.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

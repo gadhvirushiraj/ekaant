@@ -1,8 +1,8 @@
-import 'package:ekaant/breathing_excercise/breath_selection.dart';
+import 'package:ekaant/breathing-excercise/breath_selection.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:ekaant/calendar.dart';
 import 'package:ekaant/constants/color.dart';
-import 'package:ekaant/timer_selection.dart';
+import 'package:ekaant/meditation-timer/timer_selection.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {

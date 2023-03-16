@@ -1,4 +1,4 @@
-import 'package:ekaant/breathing_excercise/animate.dart';
+import 'package:ekaant/breathing-excercise/animate.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
