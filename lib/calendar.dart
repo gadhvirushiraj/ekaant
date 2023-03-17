@@ -1,4 +1,5 @@
 import 'package:cron/cron.dart';
+import 'package:ekaant/app-tour/tour_home.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -33,10 +35,66 @@ class _CalendarState extends State<Calendar> {
   late String lastActivityDate; // by deafualt
   List<String> toHighlight = [];
 
+  late TutorialCoachMark tutorialMark;
+  final ScrollController scrollController = ScrollController();
+
+  final calendar_key = GlobalKey();
+  final streak_key = GlobalKey();
+  final indicator_key = GlobalKey();
+  final goal_key = GlobalKey();
+
   void initState() {
     reset();
     getData();
     super.initState();
+    initAppTour();
+  }
+
+  void initAppTour() {
+    int counter = 0;
+    List<TargetFocus> targets = home_target(
+      calendar_key: calendar_key,
+      indicator_key: indicator_key,
+      streak_key: streak_key,
+      goal_key: goal_key,
+    );
+    Scrollable.ensureVisible(
+        targets[counter].keyTarget?.currentContext ?? context);
+    tutorialMark = TutorialCoachMark(
+        targets: targets,
+        colorShadow: ekaantBlue,
+        opacityShadow: 0.9,
+        paddingFocus: 10,
+        hideSkip: true,
+        alignSkip: Alignment.bottomRight,
+        onClickTarget: (p0) async {
+          counter++;
+          if (counter < targets.length) {
+            Scrollable.ensureVisible(
+                targets[counter].keyTarget?.currentContext ?? context,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeIn);
+          }
+          await Future.delayed(const Duration(milliseconds: 200));
+        },
+        onClickOverlay: ((p0) async {
+          counter++;
+          if (counter < targets.length) {
+            Scrollable.ensureVisible(
+                targets[counter].keyTarget?.currentContext ?? context,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeIn);
+          }
+          await Future.delayed(const Duration(milliseconds: 200));
+        }),
+        onFinish: (() {
+          Scrollable.ensureVisible(calendar_key.currentContext ?? context,
+              duration: const Duration(seconds: 1), curve: Curves.easeIn);
+        }));
+
+    Future.delayed(const Duration(seconds: 3), () {
+      tutorialMark.show(context: context);
+    });
   }
 
   Future<void> setNew() async {
@@ -142,6 +200,7 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         child: SingleChildScrollView(
+          controller: scrollController,
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.only(bottom: 90),
           child: Padding(
@@ -150,6 +209,7 @@ class _CalendarState extends State<Calendar> {
             child: Column(
               children: [
                 TableCalendar(
+                  key: calendar_key,
                   calendarBuilders: CalendarBuilders(
                     defaultBuilder: (context, day, focusedDay) {
                       if (toHighlight != []) {
@@ -245,6 +305,7 @@ class _CalendarState extends State<Calendar> {
                   height: 12,
                 ),
                 Container(
+                  key: goal_key,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -320,7 +381,10 @@ class _CalendarState extends State<Calendar> {
                                     context: context,
                                     builder: (context) => CupertinoActionSheet(
                                           actions: [
-                                            buildPicker(duration_Breath, 1)
+                                            buildPicker(
+                                              duration_Breath,
+                                              1,
+                                            )
                                           ],
                                           cancelButton:
                                               CupertinoActionSheetAction(
@@ -441,6 +505,7 @@ class _CalendarState extends State<Calendar> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
+                        key: indicator_key,
                         width: (MediaQuery.of(context).size.width - 90) / 2,
                         child: Stack(
                           alignment: Alignment.center,
@@ -494,6 +559,7 @@ class _CalendarState extends State<Calendar> {
                 width: 30,
               ),
               Expanded(
+                key: streak_key,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

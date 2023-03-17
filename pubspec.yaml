@@ -42,6 +42,7 @@ dependencies:
   just_audio: ^0.9.25
   rename: ^2.0.1
   provider: ^6.0.5
+  tutorial_coach_mark: ^1.2.7
 
 dev_dependencies:
   flutter_test:
