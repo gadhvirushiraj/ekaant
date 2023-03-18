@@ -1,5 +1,6 @@
 import 'package:cron/cron.dart';
 import 'package:ekaant/app-tour/tour_home.dart';
+import 'package:ekaant/app_tour_status.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,51 +51,54 @@ class _CalendarState extends State<Calendar> {
     initAppTour();
   }
 
-  void initAppTour() {
-    int counter = 0;
-    List<TargetFocus> targets = home_target(
-      calendar_key: calendar_key,
-      indicator_key: indicator_key,
-      streak_key: streak_key,
-      goal_key: goal_key,
-    );
-    Scrollable.ensureVisible(
-        targets[counter].keyTarget?.currentContext ?? context);
-    tutorialMark = TutorialCoachMark(
-        targets: targets,
-        colorShadow: ekaantBlue,
-        opacityShadow: 0.9,
-        paddingFocus: 10,
-        hideSkip: true,
-        alignSkip: Alignment.bottomRight,
-        onClickTarget: (p0) async {
-          counter++;
-          if (counter < targets.length) {
-            Scrollable.ensureVisible(
-                targets[counter].keyTarget?.currentContext ?? context,
-                duration: const Duration(seconds: 1),
-                curve: Curves.easeIn);
-          }
-          await Future.delayed(const Duration(milliseconds: 200));
-        },
-        onClickOverlay: ((p0) async {
-          counter++;
-          if (counter < targets.length) {
-            Scrollable.ensureVisible(
-                targets[counter].keyTarget?.currentContext ?? context,
-                duration: const Duration(seconds: 1),
-                curve: Curves.easeIn);
-          }
-          await Future.delayed(const Duration(milliseconds: 200));
-        }),
-        onFinish: (() {
-          Scrollable.ensureVisible(calendar_key.currentContext ?? context,
-              duration: const Duration(seconds: 1), curve: Curves.easeIn);
-        }));
+  void initAppTour() async {
+    if (await SaveAppTour().alreadyDone("home_tour") == false) {
+      int counter = 0;
+      List<TargetFocus> targets = home_target(
+        calendar_key: calendar_key,
+        indicator_key: indicator_key,
+        streak_key: streak_key,
+        goal_key: goal_key,
+      );
+      Scrollable.ensureVisible(
+          targets[counter].keyTarget?.currentContext ?? context);
+      tutorialMark = TutorialCoachMark(
+          targets: targets,
+          colorShadow: ekaantBlue,
+          opacityShadow: 0.9,
+          paddingFocus: 10,
+          hideSkip: true,
+          alignSkip: Alignment.bottomRight,
+          onClickTarget: (p0) async {
+            counter++;
+            if (counter < targets.length) {
+              Scrollable.ensureVisible(
+                  targets[counter].keyTarget?.currentContext ?? context,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeIn);
+            }
+            await Future.delayed(const Duration(milliseconds: 200));
+          },
+          onClickOverlay: ((p0) async {
+            counter++;
+            if (counter < targets.length) {
+              Scrollable.ensureVisible(
+                  targets[counter].keyTarget?.currentContext ?? context,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeIn);
+            }
+            await Future.delayed(const Duration(milliseconds: 200));
+          }),
+          onFinish: (() {
+            SaveAppTour().saveStatus("home_tour");
+            Scrollable.ensureVisible(calendar_key.currentContext ?? context,
+                duration: const Duration(seconds: 1), curve: Curves.easeIn);
+          }));
 
-    Future.delayed(const Duration(seconds: 3), () {
-      tutorialMark.show(context: context);
-    });
+      Future.delayed(const Duration(seconds: 3), () {
+        tutorialMark.show(context: context);
+      });
+    }
   }
 
   Future<void> setNew() async {
