@@ -1,4 +1,5 @@
 import 'package:ekaant/breathing-excercise/animate.dart';
+import 'package:ekaant/breathing-excercise/animate_liquid.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -190,7 +191,7 @@ class _BreathState extends State<Breath> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Animate(
+                        builder: (context) => AnimateLiquid(
                               session_duration: session,
                               inhale_time: inhale.inSeconds,
                               hold_time: hold1.inSeconds,
