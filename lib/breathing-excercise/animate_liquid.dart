@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:ekaant/bottom_nav.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,12 +11,14 @@ class AnimateLiquid extends StatefulWidget {
   final hold_time;
   final exhale_time;
   final session_duration;
+  final vibrate;
 
   const AnimateLiquid(
       {required this.session_duration,
       required this.inhale_time,
       required this.hold_time,
       required this.exhale_time,
+      required this.vibrate,
       Key? key})
       : super(key: key);
 
@@ -127,6 +130,9 @@ class _AnimateLiquidState extends State<AnimateLiquid> {
             duration = duration - const Duration(milliseconds: 1);
             if (text == "Inhale") {
               if (count.inSeconds == widget.inhale_time) {
+                if (widget.vibrate) {
+                  HapticFeedback.heavyImpact();
+                }
                 text = "Hold";
                 count = Duration.zero;
                 liquidPercentage = 1.1;
@@ -137,6 +143,9 @@ class _AnimateLiquidState extends State<AnimateLiquid> {
               }
             } else if (text == "Hold") {
               if (count.inSeconds == widget.hold_time) {
+                if (widget.vibrate) {
+                  HapticFeedback.heavyImpact();
+                }
                 text = "Exhale";
                 count = Duration.zero;
               } else {
@@ -144,6 +153,9 @@ class _AnimateLiquidState extends State<AnimateLiquid> {
               }
             } else {
               if (count.inSeconds == widget.exhale_time) {
+                if (widget.vibrate) {
+                  HapticFeedback.heavyImpact();
+                }
                 text = "Inhale";
                 count = Duration.zero;
               } else {

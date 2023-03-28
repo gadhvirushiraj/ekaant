@@ -1,4 +1,3 @@
-import 'package:ekaant/breathing-excercise/animate.dart';
 import 'package:ekaant/breathing-excercise/animate_liquid.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +15,7 @@ class _BreathState extends State<Breath> {
   Duration inhale = const Duration(seconds: 4);
   Duration hold1 = const Duration(seconds: 7);
   Duration exhale = const Duration(seconds: 8);
+  bool vibrate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,25 @@ class _BreathState extends State<Breath> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
+              const Divider(thickness: 1, color: Colors.white70),
+              Row(
+                children: [
+                  const Text(
+                    "Vibration",
+                    style: TextStyle(color: Colors.white70, fontSize: 18),
+                  ),
+                  Expanded(child: Container()),
+                  Switch(
+                      value: vibrate,
+                      inactiveTrackColor: Colors.white54,
+                      activeColor: ekaantGreen,
+                      onChanged: (bool value) {
+                        setState(() {
+                          vibrate = value;
+                        });
+                      })
+                ],
+              ),
               const Divider(thickness: 1, color: Colors.white70),
               Row(
                 children: [
@@ -196,6 +215,7 @@ class _BreathState extends State<Breath> {
                               inhale_time: inhale.inSeconds,
                               hold_time: hold1.inSeconds,
                               exhale_time: exhale.inSeconds,
+                              vibrate: vibrate,
                             )),
                   );
                 },
