@@ -44,6 +44,7 @@ class _CalendarState extends State<Calendar> {
   final indicator_key = GlobalKey();
   final goal_key = GlobalKey();
 
+  @override
   void initState() {
     reset();
     getData();
@@ -475,6 +476,11 @@ class _CalendarState extends State<Calendar> {
                 previousCompletedDate) {
           markToday();
         }
+      } else {
+        if (DateFormat("yyyy-MM-dd").format(DateTime.now()) ==
+            previousCompletedDate) {
+          removeToday();
+        }
       }
     } else {
       if (DateFormat("yyyy-MM-dd").format(DateTime.now()) ==
@@ -502,7 +508,7 @@ class _CalendarState extends State<Calendar> {
                     style: TextStyle(fontSize: 18, color: Colors.black54),
                   ),
                   const SizedBox(
-                    height: 12,
+                    height: 18,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -520,7 +526,7 @@ class _CalendarState extends State<Calendar> {
                               percent: percent_breath,
                               circularStrokeCap: CircularStrokeCap.round,
                               reverse: true,
-                              progressColor: ekaantDarkGreen,
+                              progressColor: ekaantDarkerGreen,
                               backgroundColor: ekaantBlue,
                             ),
                             CircularPercentIndicator(
@@ -543,7 +549,7 @@ class _CalendarState extends State<Calendar> {
                                   Text(
                                     "${((durationDoneBreath.inSeconds / duration_Breath.inSeconds) * 100).floor()}%",
                                     style: const TextStyle(
-                                        color: ekaantDarkGreen, fontSize: 18),
+                                        color: ekaantDarkerGreen, fontSize: 18),
                                   ),
                                 ],
                               ),
@@ -553,13 +559,43 @@ class _CalendarState extends State<Calendar> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 10,
+                        width: 10,
+                        color: ekaantDarkerGreen,
+                      ),
+                      const SizedBox(width: 5),
+                      const Text(
+                        "Breathing",
+                        style: TextStyle(color: ekaantDarkerGreen),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: 10,
+                        width: 10,
+                        color: ekaantGreen,
+                      ),
+                      const SizedBox(width: 5),
+                      const Text(
+                        "Meditation",
+                        style: TextStyle(color: ekaantGreen),
+                      ),
+                    ],
+                  )
                 ],
               ),
               const VerticalDivider(
-                color: Colors.black54,
+                color: ekaantBlue,
                 thickness: 2,
-                indent: 5,
-                endIndent: 5,
+                endIndent: 3,
                 width: 30,
               ),
               Expanded(
