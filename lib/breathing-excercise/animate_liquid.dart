@@ -58,7 +58,13 @@ class _AnimateLiquidState extends State<AnimateLiquid> {
         ),
       ),
       body: Container(
-        color: ekaantBlue,
+        decoration: const BoxDecoration(
+          color: ekaantBlue,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(60),
+            topRight: Radius.circular(60),
+          ),
+        ),
         height: double.infinity,
         width: double.infinity,
         child: Column(
@@ -79,7 +85,7 @@ class _AnimateLiquidState extends State<AnimateLiquid> {
                         value: duration.inSeconds / initialTime.inSeconds,
                         strokeWidth: 12,
                         color: Colors.white,
-                        backgroundColor: ekaantDarkerGreen,
+                        backgroundColor: ekaantDarkGreen,
                       ),
                     ],
                   ),
