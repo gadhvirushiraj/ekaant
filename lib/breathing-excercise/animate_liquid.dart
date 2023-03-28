@@ -43,6 +43,7 @@ class _AnimateLiquidState extends State<AnimateLiquid> {
     text = "Inhale";
     liquidPercentage = 0;
     count = Duration.zero;
+    HapticFeedback.heavyImpact();
   }
 
   @override
