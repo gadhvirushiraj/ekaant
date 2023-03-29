@@ -15,15 +15,15 @@ class _TimerSelectionState extends State<TimerSelection> {
   late FixedExtentScrollController scrollStartController;
   late FixedExtentScrollController scrollEndController;
   List<String> surroundSounds = [
+    'wind chimes',
     'buddhist scroll',
     'om chant', // yogis om
-    'wind chimes',
     'lone silence'
   ];
   List<String> startendSounds = [
+    'buddhist bowl',
     'shankh',
     'tibetian bowl',
-    'buddhist bowl',
     'lone silence'
   ];
   Duration duration = const Duration(minutes: 5);

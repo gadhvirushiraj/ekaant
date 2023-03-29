@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:ekaant/bottom_nav.dart';
 import 'package:ekaant/constants/color.dart';
+import 'package:ekaant/mood_survey.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -171,13 +172,14 @@ class _TimerDisplayState extends State<TimerDisplay> {
   Widget stopButton() {
     if (duration == const Duration(seconds: 0)) {
       return OutlinedButton(
-        onPressed: (() {
+        onPressed: (() async {
           updateTimeDone();
           audioPlayer.dispose();
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => BottomNav()),
           );
+          showDialog(context: context, builder: (_) => MoodCheck());
         }),
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),
