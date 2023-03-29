@@ -16,13 +16,18 @@ Date Modified - 03/01/2023
  Currently, Ekaant offers individuals a platform to monitor their regular meditation progress. With the option to play soothing music in the background, it aids in developing a comfortable frame of mind for meditation.
 
 ---
-### Features
+### Current Features
 
 - Meditaion Status Calendar
 - Streak Counter
 - Background Music Player and Selector 
 - Start / End Music Player and Selector
 - Day Goal Progress Indicator
+
+### Newly Added Features
+
+- Breathing Excercise Option
+- Vibration Guide for Breathing Excercise
 
 ### Working on ....
 
