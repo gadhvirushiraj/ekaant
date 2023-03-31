@@ -49,6 +49,37 @@ class _BreathState extends State<Breath> {
                       inactiveTrackColor: Colors.white54,
                       activeColor: ekaantGreen,
                       onChanged: (bool value) {
+                        if (value) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: const Text("Enable Vibration"),
+                              actionsPadding: const EdgeInsets.all(15),
+                              content: const Text(
+                                  "Make sure to turn on Haptic Feedback or Touch Feedback in your device setting.",
+                                  style: TextStyle(fontSize: 18)),
+                              actions: [
+                                TextButton(
+                                  child: const Text(
+                                    "Got it!",
+                                    style: TextStyle(
+                                        color: ekaantGreen, fontSize: 20),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ],
+                              shape: ShapeBorder.lerp(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                0.5,
+                              ),
+                            ),
+                          );
+                        }
                         setState(() {
                           vibrate = value;
                         });

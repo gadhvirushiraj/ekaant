@@ -91,7 +91,7 @@ List<TargetFocus> home_target({
                     "Click here to switch between\nCalendar and Mood Chart",
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: 20,
                     ),
                     textAlign: TextAlign.left,
@@ -211,7 +211,7 @@ List<TargetFocus> home_target({
                     height: 30,
                   ),
                   Text(
-                    "After tutorial, click timer icon to start your first session.",
+                    "After tutorial, click timer icon at bottom to start your first session.",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w100,
