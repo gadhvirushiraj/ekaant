@@ -6,7 +6,6 @@ import 'package:ekaant/constants/color.dart';
 import 'package:ekaant/mood_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,6 +43,7 @@ class _CalendarState extends State<Calendar> {
   List<String> moodData = ['0', '0', '0', '0', '0'];
 
   final calendar_key = GlobalKey();
+  final toggle_key = GlobalKey();
   final streak_key = GlobalKey();
   final indicator_key = GlobalKey();
   final goal_key = GlobalKey();
@@ -63,6 +63,7 @@ class _CalendarState extends State<Calendar> {
       int counter = 0;
       List<TargetFocus> targets = home_target(
         calendar_key: calendar_key,
+        toggle_key: toggle_key,
         indicator_key: indicator_key,
         streak_key: streak_key,
         goal_key: goal_key,
@@ -84,7 +85,7 @@ class _CalendarState extends State<Calendar> {
                   duration: const Duration(seconds: 1),
                   curve: Curves.easeIn);
             }
-            await Future.delayed(const Duration(milliseconds: 200));
+            await Future.delayed(const Duration(milliseconds: 300));
           },
           onClickOverlay: ((p0) async {
             counter++;
@@ -225,6 +226,7 @@ class _CalendarState extends State<Calendar> {
                 BarChartSample7(build: isSelected[1], moodData: moodData),
                 const SizedBox(height: 12),
                 Container(
+                  key: toggle_key,
                   height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 List<TargetFocus> home_target({
   required GlobalKey calendar_key,
+  required GlobalKey toggle_key,
   required GlobalKey indicator_key,
   required GlobalKey streak_key,
   required GlobalKey goal_key,
@@ -58,6 +59,43 @@ List<TargetFocus> home_target({
                         fontWeight: FontWeight.w100),
                     textAlign: TextAlign.center,
                   )
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  );
+
+  targets.add(
+    TargetFocus(
+      keyTarget: toggle_key,
+      enableOverlayTab: true,
+      shape: ShapeLightFocus.RRect,
+      borderSide: const BorderSide(width: 1, color: Colors.white),
+      contents: [
+        TargetContent(
+          align: ContentAlign.bottom,
+          builder: (context, controller) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    "Click here to switch between\nCalendar and Mood Chart",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
                 ],
               ),
             );
