@@ -6,15 +6,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class BarChartSample7 extends StatefulWidget {
   final bool build;
-  BarChartSample7({super.key, required this.build});
-
-  final dataList = [
-    const _BarData(18),
-    const _BarData(17),
-    const _BarData(10),
-    const _BarData(2.5),
-    const _BarData(2),
-  ];
+  final List<String> moodData;
+  BarChartSample7({super.key, required this.build, required this.moodData});
 
   @override
   State<BarChartSample7> createState() => _BarChartSample7State();
@@ -40,8 +33,8 @@ class _BarChartSample7State extends State<BarChartSample7> {
           toY: value,
           gradient: _barsGradient,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
           width: 17,
         ),
@@ -54,6 +47,17 @@ class _BarChartSample7State extends State<BarChartSample7> {
 
   @override
   Widget build(BuildContext context) {
+    final dataList = [
+      _BarData(double.parse(widget.moodData[0])),
+      _BarData(double.parse(widget.moodData[1])),
+      _BarData(double.parse(widget.moodData[2])),
+      _BarData(double.parse(widget.moodData[3])),
+      _BarData(double.parse(widget.moodData[4])),
+    ];
+
+    print("chart");
+    print(widget.moodData);
+
     if (widget.build) {
       return Padding(
         padding:
@@ -99,9 +103,11 @@ class _BarChartSample7State extends State<BarChartSample7> {
                       final index = value.toInt();
                       return SideTitleWidget(
                         axisSide: meta.axisSide,
-                        child: _IconWidget(
-                            isSelected: touchedGroupIndex == index,
-                            icon: facesData[index]),
+                        child: Icon(
+                          facesData[index],
+                          size: 30,
+                          color: ekaantGreen,
+                        ),
                       );
                     },
                   ),
@@ -117,7 +123,7 @@ class _BarChartSample7State extends State<BarChartSample7> {
                   strokeWidth: 1,
                 ),
               ),
-              barGroups: widget.dataList.asMap().entries.map((e) {
+              barGroups: dataList.asMap().entries.map((e) {
                 final index = e.key;
                 final data = e.value;
                 return generateBarGroup(
@@ -182,45 +188,3 @@ LinearGradient get _barsGradient => const LinearGradient(
       begin: Alignment.bottomLeft,
       end: Alignment.topRight,
     );
-
-class _IconWidget extends ImplicitlyAnimatedWidget {
-  const _IconWidget({required this.isSelected, required this.icon})
-      : super(duration: const Duration(milliseconds: 300));
-  final bool isSelected;
-  final IconData icon;
-
-  @override
-  ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() =>
-      _IconWidgetState();
-}
-
-class _IconWidgetState extends AnimatedWidgetBaseState<_IconWidget> {
-  Tween<double>? _rotationTween;
-
-  @override
-  Widget build(BuildContext context) {
-    final rotation = math.pi * 4 * _rotationTween!.evaluate(animation);
-    final scale = 1 + _rotationTween!.evaluate(animation) * 0.5;
-    return Transform(
-      transform: Matrix4.rotationZ(rotation).scaled(scale, scale),
-      origin: const Offset(14, 14),
-      child: Icon(
-        widget.icon,
-        color: ekaantGreen,
-        size: 28,
-      ),
-    );
-  }
-
-  @override
-  void forEachTween(TweenVisitor<dynamic> visitor) {
-    _rotationTween = visitor(
-      _rotationTween,
-      widget.isSelected ? 1.0 : 0.0,
-      (dynamic value) => Tween<double>(
-        begin: value as double,
-        end: widget.isSelected ? 1.0 : 0.0,
-      ),
-    ) as Tween<double>?;
-  }
-}

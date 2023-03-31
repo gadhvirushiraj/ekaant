@@ -41,6 +41,8 @@ class _CalendarState extends State<Calendar> {
   late TutorialCoachMark tutorialMark;
   final ScrollController scrollController = ScrollController();
 
+  List<String> moodData = ['0', '0', '0', '0', '0'];
+
   final calendar_key = GlobalKey();
   final streak_key = GlobalKey();
   final indicator_key = GlobalKey();
@@ -119,6 +121,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void getData() async {
+    print("yes");
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     toHighlight = (await prefs.getStringList('toHighlight')) ?? [];
@@ -173,6 +176,9 @@ class _CalendarState extends State<Calendar> {
       streak = 0;
     }
 
+    moodData = prefs.getStringList('moodData') ?? ['0', '0', '0', '0', '0'];
+    print("get");
+    print(moodData);
     setState(() {});
   }
 
@@ -219,7 +225,7 @@ class _CalendarState extends State<Calendar> {
             child: Column(
               children: [
                 buildCalendar(toHighlight, calendar_key, isSelected[0]),
-                BarChartSample7(build: isSelected[1]),
+                BarChartSample7(build: isSelected[1], moodData: moodData),
                 const SizedBox(height: 12),
                 Container(
                   height: 35,

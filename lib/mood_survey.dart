@@ -1,6 +1,7 @@
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MoodCheck extends StatelessWidget {
   const MoodCheck({super.key});
@@ -35,20 +36,20 @@ class MoodCheck extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                createEmoji(MdiIcons.emoticonOutline, context),
+                createEmoji(MdiIcons.emoticonOutline, 0, context),
                 const SizedBox(width: 15),
-                createEmoji(MdiIcons.emoticonHappyOutline, context),
+                createEmoji(MdiIcons.emoticonHappyOutline, 1, context),
                 const SizedBox(width: 15),
-                createEmoji(MdiIcons.emoticonNeutralOutline, context),
+                createEmoji(MdiIcons.emoticonNeutralOutline, 2, context),
               ],
             ),
             const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                createEmoji(MdiIcons.emoticonSadOutline, context),
+                createEmoji(MdiIcons.emoticonSadOutline, 3, context),
                 const SizedBox(width: 15),
-                createEmoji(MdiIcons.emoticonCryOutline, context),
+                createEmoji(MdiIcons.emoticonCryOutline, 4, context),
               ],
             ),
             Expanded(child: Container()),
@@ -58,7 +59,7 @@ class MoodCheck extends StatelessWidget {
     );
   }
 
-  Widget createEmoji(IconData icon, BuildContext context) {
+  Widget createEmoji(IconData icon, int iconID, BuildContext context) {
     return Container(
       constraints: const BoxConstraints.tightFor(width: 70, height: 70),
       decoration: const BoxDecoration(
@@ -69,6 +70,7 @@ class MoodCheck extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: (() {
+          updateMood(iconID);
           Navigator.of(context).pop();
         }),
         icon: Icon(
@@ -78,5 +80,13 @@ class MoodCheck extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> updateMood(int iconID) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> currMood =
+        prefs.getStringList('moodData') ?? ['0', '0', '0', '0', '0'];
+    currMood[iconID] = (int.parse(currMood[iconID]) + 1).toString();
+    prefs.setStringList('moodData', currMood);
   }
 }
