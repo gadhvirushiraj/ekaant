@@ -175,11 +175,7 @@ class _TimerDisplayState extends State<TimerDisplay> {
         onPressed: (() async {
           updateTimeDone();
           audioPlayer.dispose();
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => BottomNav()),
-          );
-          showDialog(context: context, builder: (_) => MoodCheck());
+          await showDialog(context: context, builder: (_) => MoodCheck());
         }),
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 25),

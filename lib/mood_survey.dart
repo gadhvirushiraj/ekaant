@@ -1,3 +1,4 @@
+import 'package:ekaant/bottom_nav.dart';
 import 'package:ekaant/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -72,6 +73,10 @@ class MoodCheck extends StatelessWidget {
         onPressed: (() {
           updateMood(iconID);
           Navigator.of(context).pop();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => BottomNav()),
+          );
         }),
         icon: Icon(
           icon,
@@ -87,6 +92,9 @@ class MoodCheck extends StatelessWidget {
     List<String> currMood =
         prefs.getStringList('moodData') ?? ['0', '0', '0', '0', '0'];
     currMood[iconID] = (int.parse(currMood[iconID]) + 1).toString();
+    
+    List<int> currMoodInt = currMood.map(int.parse).toList();
+
     prefs.setStringList('moodData', currMood);
   }
 }

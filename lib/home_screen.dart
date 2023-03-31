@@ -121,7 +121,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void getData() async {
-    print("yes");
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     toHighlight = (await prefs.getStringList('toHighlight')) ?? [];
@@ -177,8 +176,6 @@ class _CalendarState extends State<Calendar> {
     }
 
     moodData = prefs.getStringList('moodData') ?? ['0', '0', '0', '0', '0'];
-    print("get");
-    print(moodData);
     setState(() {});
   }
 

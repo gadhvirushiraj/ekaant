@@ -55,9 +55,6 @@ class _BarChartSample7State extends State<BarChartSample7> {
       _BarData(double.parse(widget.moodData[4])),
     ];
 
-    print("chart");
-    print(widget.moodData);
-
     if (widget.build) {
       return Padding(
         padding:
@@ -131,7 +128,8 @@ class _BarChartSample7State extends State<BarChartSample7> {
                   data.value,
                 );
               }).toList(),
-              maxY: 20,
+              maxY: (widget.moodData.map(int.parse).toList()).reduce(math.max) +
+                  4.toDouble(),
               barTouchData: BarTouchData(
                 enabled: true,
                 handleBuiltInTouches: false,
