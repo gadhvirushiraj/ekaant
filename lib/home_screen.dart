@@ -3,13 +3,13 @@ import 'package:ekaant/app-tour/tour_home.dart';
 import 'package:ekaant/app-tour/app_tour_status.dart';
 import 'package:ekaant/calendar.dart';
 import 'package:ekaant/constants/color.dart';
+import 'package:ekaant/mood_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class Calendar extends StatefulWidget {
@@ -218,9 +218,11 @@ class _CalendarState extends State<Calendar> {
                 const EdgeInsets.only(right: 20, left: 20, top: 5, bottom: 20),
             child: Column(
               children: [
-                buildCalendar(toHighlight, calendar_key),
+                buildCalendar(toHighlight, calendar_key, isSelected[0]),
+                BarChartSample7(build: isSelected[1]),
                 const SizedBox(height: 12),
                 Container(
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
@@ -229,7 +231,7 @@ class _CalendarState extends State<Calendar> {
                     builder: (context, constraints) {
                       return ToggleButtons(
                         constraints: BoxConstraints.expand(
-                            width: constraints.maxWidth / 2),
+                            width: constraints.maxWidth / 2, height: 35),
                         fillColor: ekaantGreen,
                         borderWidth: 0,
                         selectedColor: Colors.white,
