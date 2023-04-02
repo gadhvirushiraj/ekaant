@@ -1,7 +1,7 @@
-# Ekaant - make meditaion a habit
+# Ekaant: make meditaion a habit
+<sup>Date Modified - 29/03/2023</sup><br>
 
-Date Modified - 29/03/2023
-
+### [Click here to view Ekaant on Play Store](https://play.google.com/store/apps/details?id=com.thetechsurf.ekaant)
 ---
 ### Vision
 ---
@@ -24,7 +24,7 @@ Date Modified - 29/03/2023
 - Start / End Music Player and Selector
 - Day Goal Progress Indicator
 
-### Newly Added Features
+### Newly Added Features in Realease
 
 - Breathing Excercise Option
 - Vibration Guide for Breathing Excercise
