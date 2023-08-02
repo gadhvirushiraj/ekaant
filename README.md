@@ -4,6 +4,11 @@
 </a>
 <h1> Ekaant: make meditaiton a habit </h1>
 
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![PRWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 #### [Download Ekaant on Play Store](https://play.google.com/store/apps/details?id=com.thetechsurf.ekaant)
 
 <p float="left">
@@ -57,3 +62,7 @@ flutter run
 ```
 
 ---
+
+## License
+
+Ekaant is [MIT Licensed](./Users/rushirajgadhvi/StudioProjects/ekaant/LICENSE)
