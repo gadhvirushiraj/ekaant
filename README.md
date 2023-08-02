@@ -1,7 +1,16 @@
-# Ekaant: make meditaion a habit
-<sup>Date Modified - 29/03/2023</sup><br>
+<kbd><img src="./assets/ekaant.png" alt="logo" width="100" style="border-radius:10%"/></kbd>
 
-### [Click here to view Ekaant on Play Store](https://play.google.com/store/apps/details?id=com.thetechsurf.ekaant)
+# Ekaant: make meditaion a habit
+
+#### [Download Ekaant on Play Store](https://play.google.com/store/apps/details?id=com.thetechsurf.ekaant)
+
+<p float="left">
+  <img src="./assets/readme_img/img1.png" width="180" />
+  <img src="./assets/readme_img/img4.png" width="180" />
+  <img src="./assets/readme_img/img2.png" width="180" /> 
+  <img src="./assets/readme_img/img3.png" width="180" />
+</p>
+
 ---
 ### Vision
 ---
@@ -10,29 +19,24 @@
 *We believe that meditaion is journey that must we navigated by the person himself/ herself, the enjoyment you get achieving new stages of meditaion is the absolute. We want everyone to have this absolute experience.* 
 
 
----
-### Current Application State
----
- Currently, Ekaant offers individuals a platform to monitor their regular meditation progress. With the option to play soothing music in the background, it aids in developing a comfortable frame of mind for meditation.
 
 ---
-### Current Features
+## 🚀 Features
+- Meditaion Status Calendar :calendar:
+- Streak Counter :hourglass:
+- Background Music Player and Selector :headphones:
+- Start / End Music Player and Selector :radio:
+- Day Goal Progress Indicator :chart_with_upwards_trend:
 
-- Meditaion Status Calendar
-- Streak Counter
-- Background Music Player and Selector 
-- Start / End Music Player and Selector
-- Day Goal Progress Indicator
+### 📦 Newly Added Features in Realease
 
-### Newly Added Features in Realease
+- Breathing Excercise Option :massage:
+- Vibration Guide for Breathing Excercise :vibration_mode:
 
-- Breathing Excercise Option
-- Vibration Guide for Breathing Excercise
+### 🧗 Working on ....
 
-### Working on ....
-
-- Notification on day goal achievement status
-- More background sounds
+- [ ] Notification on day goal achievement status
+- [ ] More background sounds
 
 
 
