@@ -1,4 +1,4 @@
-<kbd><img src="./assets/ekaant.png" alt="logo" width="100" style="border-radius:10%"/></kbd>
+<kbd><img src="./assets/ekaant.png" alt="logo" width="100" style="border-radius:20%"/></kbd>
 
 # Ekaant: make meditaion a habit
 
@@ -10,15 +10,6 @@
   <img src="./assets/readme_img/img2.png" width="180" /> 
   <img src="./assets/readme_img/img3.png" width="180" />
 </p>
-
----
-### Vision
----
-*There are several applications that offer meditation mentors and videos to help you through the meditaion learning curve. However, ekaant is unique in every way. We at ekaant want to help you make meditation a habit.* 
-
-*We believe that meditaion is journey that must we navigated by the person himself/ herself, the enjoyment you get achieving new stages of meditaion is the absolute. We want everyone to have this absolute experience.* 
-
-
 
 ---
 ## 🚀 Features
