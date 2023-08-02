@@ -1,6 +1,8 @@
-<kbd><img src="./assets/ekaant.png" alt="logo" width="100" style="border-radius:20%"/></kbd>
 
-# Ekaant: make meditaion a habit
+<a href='https://play.google.com/store/apps/details?id=com.thetechsurf.ekaant'>
+  <img src="./assets/ekaant.png" alt="logo" width="180" style="border-radius:20%">
+</a>
+<h1> Ekaant: make meditaiton a habit </h1>
 
 #### [Download Ekaant on Play Store](https://play.google.com/store/apps/details?id=com.thetechsurf.ekaant)
 
@@ -21,14 +23,37 @@
 
 ### 📦 Newly Added Features in Realease
 
-- Breathing Excercise Option :massage:
-- Vibration Guide for Breathing Excercise :vibration_mode:
+- [x] Breathing Excercise Option :massage:
+- [x] Vibration Guide for Breathing Excercise :vibration_mode:
 
 ### 🧗 Working on ....
 
-- [ ] Notification on day goal achievement status
+- [ ] Notification on daily goal achievement status
 - [ ] More background sounds
 
+---
 
+## Install, build and run!
 
+You'll need to clone and run this application, [git](https://git-scm.com) msut be installed on your system.
 
+```
+# clone this repository
+$ git clone https://github.com/gadhvirushiraj/ekaant.git
+
+# switch dir
+$ cd ekaant
+```
+
+Install project dependencies
+
+```
+flutter pub get
+```
+
+run on emulator or device, view available device by `flutter devices`
+```
+flutter run
+```
+
+---
